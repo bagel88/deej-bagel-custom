@@ -204,8 +204,13 @@ func (m *sessionMap) refreshSessions(force bool) {
 		minTimeBetweenRefreshes = time.Second * 5
 	}
 
+	// Apply fast detection if enabled (reduce interval by half) - same logic as in setupAutomaticSessionRefresh
+	if m.deej.config.FastSessionDetection {
+		minTimeBetweenRefreshes = minTimeBetweenRefreshes / 2
+	}
+
 	// make sure enough time passed since the last refresh, unless force is true in which case always clear
-	if !force && m.lastSessionRefresh.Add(minTimeBetweenRefreshes).After(time.Now()) {
+	if !force && time.Now().Before(m.lastSessionRefresh.Add(minTimeBetweenRefreshes)) {
 		return
 	}
 
