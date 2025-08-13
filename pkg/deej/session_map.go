@@ -187,7 +187,9 @@ func (m *sessionMap) setupAutomaticSessionRefresh() {
 		for {
 			select {
 			case <-ticker.C:
-				m.logger.Debug("Performing scheduled session refresh")
+				m.logger.Debugw("Performing scheduled session refresh",
+					"interval", interval,
+					"timeSinceLast", time.Since(m.lastSessionRefresh))
 				m.refreshSessions(false)
 			}
 		}
@@ -211,6 +213,10 @@ func (m *sessionMap) refreshSessions(force bool) {
 
 	// make sure enough time passed since the last refresh, unless force is true in which case always clear
 	if !force && time.Now().Before(m.lastSessionRefresh.Add(minTimeBetweenRefreshes)) {
+		m.logger.Debugw("Skipping session refresh - too soon",
+			"lastRefresh", m.lastSessionRefresh,
+			"minInterval", minTimeBetweenRefreshes,
+			"timeSinceLast", time.Since(m.lastSessionRefresh))
 		return
 	}
 
@@ -220,7 +226,8 @@ func (m *sessionMap) refreshSessions(force bool) {
 	if err := m.getAndAddSessions(); err != nil {
 		m.logger.Warnw("Failed to re-acquire all audio sessions", "error", err)
 	} else {
-		m.logger.Debug("Re-acquired sessions successfully")
+		m.logger.Debugw("Re-acquired sessions successfully",
+			"sessionCount", len(m.m))
 	}
 }
 
@@ -274,7 +281,17 @@ func (m *sessionMap) handleSliderMoveEvent(event SliderMoveEvent) {
 
 	// first of all, ensure our session map isn't moldy
 	if m.lastSessionRefresh.Add(maxTimeBetweenRefreshes).Before(time.Now()) {
-		m.logger.Debug("Stale session map detected on slider move, refreshing")
+		m.logger.Debugw("Stale session map detected on slider move, refreshing",
+			"maxInterval", maxTimeBetweenRefreshes,
+			"timeSinceLast", time.Since(m.lastSessionRefresh))
+		m.refreshSessions(true)
+	}
+
+	// For faster response, also refresh if it's been more than 0.5 seconds since last refresh
+	// This helps catch new sessions that might have appeared
+	if time.Since(m.lastSessionRefresh) > 500*time.Millisecond {
+		m.logger.Debugw("Refreshing sessions for faster response on slider move",
+			"timeSinceLast", time.Since(m.lastSessionRefresh))
 		m.refreshSessions(true)
 	}
 
