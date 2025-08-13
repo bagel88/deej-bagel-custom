@@ -1,0 +1,50 @@
+# Build artifacts
+deej-dev
+deej-release
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Logs
+logs/
+*.log
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Go specific
+*.test
+*.out
+go.work
+
+# Config files that might contain sensitive data
+config.yaml
+!config.yaml.example
+
+# Arduino build files
+*.hex
+*.elf
+*.map
+build/
+
+# Backup files
+*.bak
+*.backup
