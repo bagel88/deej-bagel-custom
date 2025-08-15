@@ -12,7 +12,7 @@ This is a custom build of [Deej](https://github.com/omriharel/deej) with enhance
 
 ### Custom Enhancements
 - **Serial Error Recovery**: Automatic reconnection when serial connection is lost
-- **WINE Compatibility**: Handles USB/serial disruptions when launching WINE games
+- **WINE/Proton Compatibility**: Handles USB/serial disruptions when launching WINE/Proton games
 - **Application Resilience**: Panic recovery and automatic restart capabilities
 - **Enhanced Logging**: Better error reporting and debugging information
 - **Smart Session Management**: Configurable session refresh intervals and fast detection
@@ -22,7 +22,7 @@ This is a custom build of [Deej](https://github.com/omriharel/deej) with enhance
 ## 🔧 What's Fixed
 
 This build addresses the common issue where Deej crashes with EOF errors when:
-- Starting games through WINE
+- Starting games through WINE/Proton
 - USB connection becomes temporarily unstable
 - Serial port gets disconnected and reconnected
 
