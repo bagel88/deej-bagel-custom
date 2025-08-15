@@ -1,4 +1,4 @@
-# Deej - PipeWire Edition with Enhanced Features
+# Deej - Custom edit for Linux with Enhanced Features
 
 This is a custom build of [Deej](https://github.com/omriharel/deej) with enhanced features, specifically designed for modern Linux systems.
 
