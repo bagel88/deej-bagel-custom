@@ -1,17 +1,16 @@
 # Deej - PipeWire Edition with Enhanced Features
 
-This is a custom build of [Deej](https://github.com/omriharel/deej) with **native PipeWire support** and enhanced features, specifically designed for modern Linux systems with PipeWire audio server.
+This is a custom build of [Deej](https://github.com/omriharel/deej) with enhanced features, specifically designed for modern Linux systems.
 
 ## 🚀 Features
 
 ### Original Deej Features
 - **Hardware Volume Control**: Control your PC's volume using physical sliders
 - **Multi-Application Support**: Control volume for individual applications
-- **Cross-Platform**: Works on Windows and Linux
+- **Cross-Platform**: Works on Windows and Linux (But most changes are for Linux)
 - **Real-time Control**: Instant volume changes with physical feedback
 
 ### Custom Enhancements
-- **Native PipeWire Support**: Direct integration with PipeWire audio server (replaces PulseAudio)
 - **Serial Error Recovery**: Automatic reconnection when serial connection is lost
 - **WINE Compatibility**: Handles USB/serial disruptions when launching WINE games
 - **Application Resilience**: Panic recovery and automatic restart capabilities
@@ -36,14 +35,10 @@ This build addresses the common issue where Deej crashes with EOF errors when:
 **Before**: Fixed session refresh intervals that couldn't be tuned
 **After**: Flexible configuration for different use cases and performance needs
 
-**Before**: PulseAudio dependency with potential compatibility issues
-**After**: Native PipeWire support for modern Linux systems
-
 ## 📦 Installation
 
 ### Prerequisites
 - Go 1.16 or later
-- PipeWire audio server (modern Linux systems)
 - Arduino IDE (for hardware setup)
 - Physical slider hardware (see [original Deej documentation](https://github.com/omriharel/deej))
 
@@ -83,15 +78,6 @@ This build is specifically tested and optimized for Linux gaming with WINE. When
 2. Log the error without crashing
 3. Automatically attempt to reconnect
 4. Resume normal operation once the connection is restored
-
-## 🔌 PipeWire Integration
-
-This build replaces PulseAudio with native PipeWire support, providing:
-
-- **Better Performance**: Lower latency and improved audio handling
-- **Modern Compatibility**: Works seamlessly with modern Linux distributions
-- **Enhanced Features**: Better session management and audio routing
-- **Future-Proof**: PipeWire is the future of Linux audio
 
 ## ⚡ Performance & Session Management
 
