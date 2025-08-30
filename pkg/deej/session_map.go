@@ -198,6 +198,7 @@ func (m *sessionMap) setupAutomaticSessionRefresh() {
 
 // performance: explain why force == true at every such use to avoid unintended forced refresh spams
 func (m *sessionMap) refreshSessions(force bool) {
+	m.logger.Debugw("refreshSessions called", "force", force, "timeSinceLast", time.Since(m.lastSessionRefresh))
 
 	// Get the minimum time between refreshes from config, with fallback to default
 	minTimeBetweenRefreshes := time.Duration(m.deej.config.SessionRefreshInterval) * time.Second
@@ -271,6 +272,7 @@ func (m *sessionMap) sessionMapped(session Session) bool {
 }
 
 func (m *sessionMap) handleSliderMoveEvent(event SliderMoveEvent) {
+	m.logger.Debugw("Received slider move event", "sliderID", event.SliderID, "percentValue", event.PercentValue)
 
 	// Get the maximum time between refreshes from config, with fallback to default
 	maxTimeBetweenRefreshes := time.Duration(m.deej.config.MaxSessionRefreshInterval) * time.Second

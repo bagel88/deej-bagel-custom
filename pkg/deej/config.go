@@ -261,7 +261,15 @@ func (cc *CanonicalConfig) populateFromVipers() error {
 	cc.PeriodicUpdateInterval = cc.userConfig.GetInt(configKeyPeriodicUpdateInterval)
 	cc.DetectExternalChanges = cc.userConfig.GetBool(configKeyDetectExternalChanges)
 	cc.SessionRefreshInterval = cc.userConfig.GetInt(configKeySessionRefreshInterval)
+	if cc.SessionRefreshInterval <= 0 {
+		cc.SessionRefreshInterval = 30 // Default to 30 seconds
+	}
+
 	cc.MaxSessionRefreshInterval = cc.userConfig.GetInt(configKeyMaxSessionRefreshInterval)
+	if cc.MaxSessionRefreshInterval <= 0 {
+		cc.MaxSessionRefreshInterval = 45 // Default to 45 seconds
+	}
+
 	cc.FastSessionDetection = cc.userConfig.GetBool(configKeyFastSessionDetection)
 
 	cc.logger.Debugw("Loaded session refresh config",
