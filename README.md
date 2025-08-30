@@ -125,8 +125,8 @@ connection_info:
   baud_rate: 9600
 
 # Slider behavior
-invert_sliders: false
-noise_reduction_level: 0.02
+invert_sliders: false               # if you want slider inverted or not
+noise_reduction_level: default      # default, low, high
 
 # Session management (NEW!)
 session_refresh_interval: 30        # How often to refresh sessions (seconds, 0 = disabled)
@@ -140,12 +140,12 @@ detect_external_changes: true       # Detect volume changes from other applicati
 # Slider mappings
 slider_mapping:
   0: master
-  1: chrome.exe
-  2: spotify.exe
+  1: discord
+  2: spotify
   3:
-    - pathofexile_x64.exe
-    - rocketleague.exe
-  4: discord.exe
+    - wine64-preloader
+    - game2
+  4: firefox
 ```
 
 ### New Configuration Options
