@@ -120,9 +120,8 @@ Create a `config.yaml` file in the same directory as the executable:
 
 ```yaml
 # Serial connection settings
-connection_info:
-  com_port: "/dev/ttyUSB0"  # Your serial port
-  baud_rate: 9600
+com_port: "/dev/ttyUSB0"  # Your serial port
+baud_rate: 9600
 
 # Slider behavior
 invert_sliders: false               # if you want slider inverted or not
