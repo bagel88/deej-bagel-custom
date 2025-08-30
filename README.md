@@ -178,7 +178,7 @@ This project is based on the original Deej project. See the [original LICENSE](h
 - Original Deej project by [omriharel](https://github.com/omriharel)
 - Serial error recovery fix inspired by [PR #150](https://github.com/omriharel/deej/pull/150)
 - Session management improvements and performance optimizations developed collaboratively
-- PipeWire integration for modern Linux audio support
+- PipeWire integration for modern Linux audio support (Still TODO, 2026)
 
 ## 🔗 Links
 
